@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <title>NASAC2018会议注册</title>
 <link rel="stylesheet" href="/nasac2018reg/stylesheets/layui.css" media="all">
+<link rel="stylesheet" href="/nasac2018reg/stylesheets/extend/steps/style.css">
+<style type="text/css">
+  .step-body{
+    margin-top: 25px;
+  }
+</style>
 </head>
 <body>
 <div class="layui-container"> 
@@ -14,82 +20,206 @@
 	</div>
 	<div class="layui-row">
 		<div class="layui-col-12">
-			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-			  <legend>NASAC2018会议注册</legend>
-			</fieldset>
-			<form class="layui-form layui-form-pane" action="">
-			  <div class="layui-form-item">
-			    <label class="layui-form-label">姓名</label>
-			    <div class="layui-input-inline">
-			      <input type="text" name="name" autocomplete="off" placeholder="请输入姓名" class="layui-input" lay-verify="required">
-			    </div>
-			    <label class="layui-form-label">单位/学校</label>
-			    <div class="layui-input-inline">
-			      <input type="text" name="company" autocomplete="off" placeholder="请输入单位" class="layui-input" lay-verify="required" > 
-			    </div>
-			    <label class="layui-form-label">手机号码</label>
-		        <div class="layui-input-inline">
-		         <input type="tel" name="phone" lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
-		        </div>
-			  </div>
-			  <div class="layui-form-item">
-			    <label class="layui-form-label">注册类型</label>
-			    <div class="layui-input-inline">
-			      <select name="regtype" lay-filter="regtype" lay-verify="required">
-			        <option value=""></option>
-			        <option value="0">院士/特邀报告人</option>
-			        <option value="1">专委委员</option>
-			        <option value="2">CCF会员</option>
-			        <option value="3">CCF学生会员</option>
-			        <option value="4">学生</option>
-			        <option value="5">其他</option>
-			      </select>
-			    </div>
-			    <div class="layui-form-mid layui-word-aux" id="zcf" value=''></div>
-			  </div>
+      <div id="step_demo" class="step-body">
+        <div class="step-header" style="width:100%;overflow: hidden;">
+            <ul>
+                <li>
+                    <span class="step-name">注册信息</span>
+                </li>
+                <li>
+                    <span class="step-name">开票信息</span>
+                </li>
+                <li>
+                    <span class="step-name">支付</span>
+                </li>
+             
+            </ul>
+        </div>
+        <div class="step-content">
+            <div class="step-list">
+              <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                <legend>NASAC2018会议注册</legend>
+              </fieldset>
+              <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">真实姓名</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="name" autocomplete="off" placeholder="请输入真实姓名" class="layui-input" lay-verify="required">
+                  </div>
+                  <label class="layui-form-label">单位/学校全称</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="company" autocomplete="off" placeholder="单位/学校全称" class="layui-input" lay-verify="required" > 
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">手机号码</label>
+                    <div class="layui-input-inline">
+                     <input type="text" name="phone" lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                     <input type="text" name="email" lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">注册类型</label>
+                  <div class="layui-input-inline">
+                    <select name="regtype" lay-filter="regtype" lay-verify="required">
+                      <option value=""></option>
+                      <option value="0">院士/特邀报告人</option>
+                      <option value="1">专委委员</option>
+                      <option value="2">CCF会员</option>
+                      <option value="3">CCF学生会员</option>
+                      <option value="4">学生</option>
+                      <option value="5">其他</option>
+                    </select>
+                  </div>
+                  <div class="layui-form-mid layui-word-aux" id="zcf" value=''></div>
+                </div>
 
-			  <div class="layui-form-item" style="display: none;" id="ccfhy">
-			    <label class="layui-form-label">会员号</label>
-			    <div class="layui-input-inline">
-			      <div class="layui-input-inline">
-			        <input type="text" name="ccfhy" autocomplete="off" placeholder="请输入CCF会员号" class="layui-input">
-			      </div>
-			    </div>
-			  </div>
+                <div class="layui-form-item" style="display: none;" id="ccfhy">
+                  <label class="layui-form-label">会员号</label>
+                  <div class="layui-input-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="ccfhy" autocomplete="off" placeholder="请输入CCF会员号" class="layui-input">
+                    </div>
+                  </div>
+                </div>
 
-			  <div class="layui-form-item" style="display: none;" id="ccfxshy">
-			    <label class="layui-form-label">会员号</label>
-			    <div class="layui-input-inline">
-			      <div class="layui-input-inline">
-			        <input type="text" name="ccfxshy" autocomplete="off" placeholder="请输入CCF学生会员号" class="layui-input" >
-			      </div>
-			    </div>
-			  </div>
+                <div class="layui-form-item" style="display: none;" id="ccfxshy">
+                  <label class="layui-form-label">会员号</label>
+                  <div class="layui-input-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="ccfxshy" autocomplete="off" placeholder="请输入CCF学生会员号" class="layui-input" >
+                    </div>
+                  </div>
+                </div>
 
-			  <div class="layui-form-item" style="display: none;" id="xuehao">
-			    <label class="layui-form-label">学号</label>
-			    <div class="layui-input-inline">
-			      <div class="layui-input-inline">
-			        <input type="text" name="xuehao" autocomplete="off" placeholder="请输入学号" class="layui-input" >
-			      </div>
-			    </div>
-			  </div>
+                <div class="layui-form-item" style="display: none;" id="xuehao">
+                  <label class="layui-form-label">学号</label>
+                  <div class="layui-input-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="xuehao" autocomplete="off" placeholder="请输入学号" class="layui-input" >
+                    </div>
+                  </div>
+                </div>
 
-			  <div class="layui-form-item">
-			    <div class="layui-input-block">
-			      <button class="layui-btn" lay-submit="" lay-filter="demo1">确认注册</button>
-			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-			    </div>
-			  </div>
-			</form>
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">下一步</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="step-list">
+              <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                <legend>开票信息</legend>
+              </fieldset>
+              <form class="layui-form layui-form-pane" action="" id="kpform">
+                <div class="layui-form-item" pane>
+                  <label class="layui-form-label">是否开票</label>
+                  <div class="layui-input-block">
+                    <input type="checkbox" name="switch" lay-skin="switch" lay-filter="sfkp" lay-text="是|否">
+                  </div>
+                </div>
+                
+                <div id="kpcontainer"></div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button class="layui-btn" lay-submit="" lay-filter="kpxyb" id="kpxyb">下一步</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="step-list" >
+              <div class="layui-row">
+                <div class="layui-col-md6">
+                  <fieldset class="layui-elem-field layui-field-title">
+                    <legend>支付信息</legend>
+                    <div class="layui-field-box" style="max-width: 570px;text-align: center;">
+                      <p style="font-size: 18px;">你的注册类型是：<span id="zflx" style="color:red;"></span>，需支付<span id="zfq" style="color:red;"></span>元</p>
+                      <img class="img-responsive" src="/nasac2018reg/images/pay.png" alt="支付二维码" style="">
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="layui-col-md6">
+                  <fieldset class="layui-elem-field layui-field-title">
+                    <legend>支付流程</legend>
+                    <div class="layui-field-box" style="text-align: center;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali01.png" style="width: 300px;" alt="" >
+                      <img class="img-responsive" src="/nasac2018reg/images/ali02.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali03.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali04.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx01.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx02.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx03.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx04.png" alt="" style="width: 300px;">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+
+			
 		</div>
 	</div>
+  <hr style="height:1px;border:none;border-top:1px dashed #5cb85c;">
+  <footer style="text-align: center;">
+    <p class="text-center">2018 &copy; NASAC 会务组</p>
+  </footer>
 </div>
+                <div id="confirmkaipiao" style="display: none;">
+                  <div class="layui-form-item" id="">
+                    <div class="layui-inline">
+                      <label class="layui-form-label">票据抬头</label>
+                      <div class="layui-input-inline">
+                        <div class="layui-input-inline">
+                          <input type="text" id="pjtt" name="pjtt" autocomplete="off" placeholder="请输入抬头" class="layui-input" lay-verify="required">
+                        </div>
+                      </div>
+
+                      <label class="layui-form-label">税务号</label>
+                      <div class="layui-input-inline">
+                        <div class="layui-input-inline">
+                          <input type="text" id="swh" name="swh" autocomplete="off" placeholder="请输入税务号" class="layui-input" lay-verify="required">
+                        </div>
+                      </div>
+
+                      <label class="layui-form-label">开票金额</label>
+                      <div class="layui-input-inline">
+                        <div class="layui-input-inline">
+                          <input type="text" id="kpje" name="kpje" autocomplete="off" placeholder="请输入开票金额" class="layui-input" lay-verify="required">
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
 <script src="/nasac2018reg/javascripts/layui.js"></script>
 <script>
-layui.use('form', function(){
+layui.use(['form','steps'], function(){
   var form = layui.form;
-  	  $ = layui.jquery 
+  	  $ = layui.jquery
+  var $step= $("#step_demo").step();
+  var phone = '',//手机号
+      regmoney = 0,
+      regtypename = ''
+
+    $("#preBtn").click(function(event) {
+      console.log(event)
+        $step.preStep();//上一步
+    });
+    $("#nextBtn").click(function(event) {
+        $step.nextStep();//下一步
+    });
+    $("#goBtn").click(function(event) {
+        $step.goStep(3);//到指定步
+    });
   
   form.on('select(regtype)', function(data){
   	console.log('select --->',data)
@@ -103,18 +233,18 @@ layui.use('form', function(){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">1</span> 元').val(1)
+  		$('#zcf').html('注册费 <span style="color:red;">1200</span> 元').val(1200)
   	}
   	if(data.value == 2){
   		console.log('CCF会员')
   		$('#ccfxshy').css('display','none')
   		$('#ccfhy').css('display','')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">2</span> 元').val(2)
+  		$('#zcf').html('注册费 <span style="color:red;">1275</span> 元').val(1275)
   	}
   	if(data.value == 3){
   		console.log('CCF学生会员')
-  		$('#zcf').html('注册费 <span style="color:red;">3</span> 元').val(3)
+  		$('#zcf').html('注册费 <span style="color:red;">975</span> 元').val(975)
   		$('#ccfhy').css('display','none')
   		$('#xuehao').css('display','none')
   		$('#ccfxshy').css('display','')
@@ -124,16 +254,16 @@ layui.use('form', function(){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','')
-  		$('#zcf').html('注册费 <span style="color:red;">4</span> 元').val(4)
+  		$('#zcf').html('注册费 <span style="color:red;">1050</span> 元').val(1050)
   	}
   	if(data.value == 5){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">5</span> 元').val(5)
+  		$('#zcf').html('注册费 <span style="color:red;">1500</span> 元').val(1500)
   	}
   })
-  //监听提交
+  //监听下一步
   form.on('submit(demo1)', function(data){
   	//if(data)
   	console.log(typeof(data.field.ccfhy))
@@ -151,7 +281,29 @@ layui.use('form', function(){
   		layer.msg('请输入学号!', {icon: 6, time: 1000});
   		return false
   	}
-    
+    switch(data.field.regtype){
+      case '0':
+        regtypename = '院士/特邀报告人'
+        break
+      case '1':
+        regtypename = '专委委员'
+        break
+      case '2':
+        regtypename = 'CCF会员'
+        break
+      case '3':
+        regtypename = 'CCF学生会员'
+        break
+      case '4':
+        regtypename = '学生'
+        break
+      default:
+        regtypename = '其他'
+    }
+    phone = data.field.phone
+    regmoney = $('#zcf').val()
+    regtype = data.field.regtype
+    console.log('第一步phone',phone)
     $.ajax({
     	url:'/nasac2018reg/reg',
     	method:'POST',
@@ -163,19 +315,43 @@ layui.use('form', function(){
     		regmoney:$('#zcf').val(),
     		ccfhy:data.field.ccfhy,
     		ccfxshy:data.field.ccfxshy,
-    		xuehao:data.field.xuehao
+    		xuehao:data.field.xuehao,
+        email:data.field.email
     	},
     	success:function(result){
-    		layer.alert('注册成功，点击确定返回。', {
-				closeBtn: false    // 是否显示关闭按钮
-			    ,anim: 1 //动画类型
-			    ,btn: ['确定'] //按钮
-			    ,icon: 6    // icon
-			    ,yes:function(){
-			        window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
-  					window.close();
-			    }
-			    });
+        console.log('result',result)
+        if(result.code == 0){
+          //下一步
+          console.log('$step111--->',$step)
+          $step.nextStep();//下一步
+          return false
+        }
+        if(result.code == -1){
+          console.log(result.msg)
+            layer.alert('手机号不能重复注册', {
+              closeBtn: false    // 是否显示关闭按钮
+                ,anim: 1 //动画类型
+                ,btn: ['关闭'] //按钮
+                ,icon: 6    // icon
+                ,yes:function(index){
+                  layer.close(index)
+                  return false
+                  //window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
+                  //window.close();
+                }
+            });
+       
+        }
+    // 		layer.alert('注册成功，点击确定返回。', {
+				// closeBtn: false    // 是否显示关闭按钮
+			 //    ,anim: 1 //动画类型
+			 //    ,btn: ['确定'] //按钮
+			 //    ,icon: 6    // icon
+			 //    ,yes:function(){
+			 //        window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
+  		// 			window.close();
+			 //    }
+			 //    });
 
     	},
     	error:function(err){
@@ -184,6 +360,119 @@ layui.use('form', function(){
     })
     return false;
   });
+  //下一步 开票
+  form.on('submit(kpxyb)',function(data){
+    console.log('开票下一步',data)
+    console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+    if(switchstate){
+      console.log('需要开票','手机号',phone)
+      if(parseInt(data.field.kpje) > parseInt(regmoney)){
+        console.log('开票金额不能大于缴费金额',data.field.kpje,regmoney)
+        layer.msg('开票金额不能大于缴费金额!', {icon: 6, time: 2000});
+        return false
+      }
+      $.ajax({
+        url:'/nasac2018reg/pjgx',
+        method:'POST',
+        data:{
+          phone:phone,
+          pjtt:data.field.pjtt,
+          swh:data.field.swh,
+          kpje:data.field.kpje
+        },
+        success:function(result){
+          console.log('result',result)
+          console.log('开票信息更新成功')
+          if(result.code == 0){
+            //下一步
+            console.log('ddddddddddddd')
+            console.log('$step--->',$step)
+            $step.nextStep();//下一步
+            $('#zflx').html(regtypename)
+            $('#zfq').html(regmoney)
+            return false
+          }
+          if(result.code == -1)
+          {
+            layer.alert(result.msg, {
+              closeBtn: false    // 是否显示关闭按钮
+                ,anim: 1 //动画类型
+                ,btn: ['关闭'] //按钮
+                ,icon: 6    // icon
+                ,yes:function(index){
+                  layer.close(index)
+                  return false
+                  //window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
+                  //window.close();
+                }
+            });
+            return false
+          }
+      //    layer.alert('注册成功，点击确定返回。', {
+          // closeBtn: false    // 是否显示关闭按钮
+         //    ,anim: 1 //动画类型
+         //    ,btn: ['确定'] //按钮
+         //    ,icon: 6    // icon
+         //    ,yes:function(){
+         //        window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
+        //      window.close();
+         //    }
+         //    });
+
+        },
+        error:function(err){
+          console.log(err)
+        }
+      })
+      return false
+    }else{
+      console.log('不开票')
+      layer.alert('确定不开发票吗？', {
+        closeBtn: false    // 是否显示关闭按钮
+        ,anim: 1 //动画类型
+        ,btn: ['确定','返回开票'] //按钮
+        ,icon: 6    // icon
+        ,yes:function(index){
+            layer.close(index)
+            $step.nextStep();//下一步
+            return false
+                  //window.location.href="http://nasac2018.szu.edu.cn/?zwtz=zhuce";
+                  //window.close();
+        },
+        btn2:function(index){
+          layer.close(index)
+          return false
+        }
+      });
+      return false
+    }
+  })
   //各种基于事件的操作，下面会有进一步介绍
+  //是否开票
+  var switchstate = false
+  form.on('switch(sfkp)',function(data){
+    console.log(data.elem); //得到checkbox原始DOM对象
+    console.log('是否开票',data.elem.checked); //开关是否开启，true或者false
+    console.log(data.value); //开关value值，也可以通过data.elem.value得到
+    console.log(data.othis); //得到美化后的DOM对象
+    switchstate = data.elem.checked
+    if(data.elem.checked){
+      $('#pjtt').attr('lay-verify','required')
+      $('#swh').attr('lay-verify','required')
+      $('#kpje').attr('lay-verify','required')
+      $('#confirmkaipiao').appendTo($('#kpcontainer'))
+      $('#confirmkaipiao').css({'display':''})
+      return false
+    }else{
+      console.log('关开关')
+      //$('#kpcontainer').detach()
+      $('#pjtt').attr('lay-verify','')
+      $('#swh').attr('lay-verify','')
+      $('#kpje').attr('lay-verify','')
+      $('#confirmkaipiao').css({'display':'none'})
+      return false
+
+    }
+  })
 });
 </script>

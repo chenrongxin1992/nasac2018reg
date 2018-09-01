@@ -50,28 +50,72 @@ router.post('/reg',function(req,res){
 		default:
 			regtypename = '其他'
 	}
-	let reg = new Reg({
-		name:name,
-		fakename:fakename,
-		company:company,
-		phone:phone,
-		fakephone:fakephone,
-		regtype:regtype,
-		regtypename:regtypename,
-		regmoney:regmoney,
-		ccfhy:ccfhy,
-		ccfxshy:ccfxshy,
-		xuehao:xuehao
-	})
-	console.log(reg)
-	reg.save(function(err){
-		if(err){
-			console.log('save reg info err-->',err)
-			return res.json({'code':'-1','msg':err})
-		}
-		console.log('save reg info success')
-		return res.json({'code':0,'msg':'success'})
-	})
+	let search = Reg.findOne({'phone':phone})
+		search.exec(function(err,doc){
+			if(err){
+				console.log('search phone err',err)
+				return res.json({'code':-1,'msg':err})
+			}
+			if(doc){
+				console.log('手机号已注册')
+				return res.json({'code':-1,'msg':'手机号已注册'})
+			}
+			if(!doc || doc.length == 0){
+				let reg = new Reg({
+					name:name,
+					fakename:fakename,
+					company:company,
+					phone:phone,
+					fakephone:fakephone,
+					regtype:regtype,
+					regtypename:regtypename,
+					regmoney:regmoney,
+					ccfhy:ccfhy,
+					ccfxshy:ccfxshy,
+					xuehao:xuehao
+				})
+				console.log(reg)
+				reg.save(function(err){
+					if(err){
+						console.log('save reg info err-->',err)
+						return res.json({'code':'-1','msg':err})
+					}
+					console.log('save reg info success')
+					return res.json({'code':0,'msg':'success'})
+				})
+			}
+		})
+})
+
+router.post('/pjgx',function(req,res){
+	let phone = req.body.phone,
+		pjtt = req.body.pjtt,
+		swh = req.body.swh,
+		kpje = req.body.kpje
+	console.log('phone',phone)
+	let search = Reg.findOne({})
+		search.where('phone').equals(phone)
+		search.exec(function(err,doc){
+			if(err){
+				console.log('pjgx search err',err)
+				return res.json({'code':-1,'msg':err})
+			}
+			if(doc){
+				console.log(doc)
+				Reg.update({'phone':phone},{'pjtt':pjtt,'swh':swh,'kpje':kpje,'needpj':1,'state':1},function(err){
+					if(err){
+						console.log('pjgx update err',err)
+						return res.json({'code':-1,'msg':err})
+					}
+					console.log('update success')
+					return res.json({'code':0,'msg':'success'})
+				})
+			}
+			if(!doc){
+				console.log('不存在记录')
+				return res.json({'code':-1,'msg':'不存在记录'})
+			}
+		})
 })
 
 router.get('/getregdata',function(req,res,next){

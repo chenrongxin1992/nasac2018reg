@@ -38,6 +38,7 @@
     moment = require('moment')
 
 var regSchema = new Schema({ 
+    email:{type:String},
     name : {type:String},
     fakename:{type:String},
     company : {type:String},
@@ -49,6 +50,11 @@ var regSchema = new Schema({
     ccfhy:{type:String},
     ccfxshy:{type:String},
     xuehao:{type:String},
+    state:{type:Number,default:0},//状态0未交费，1核查中，2缴费成功
+    needpj:{type:Number,default:0},//是否需要票据，0否1是
+    pjtt:{type:String},//票据抬头
+    swh:{type:String},//税务号
+    kpje:{type:String},//开票金额
     regtime :{type:String,default:moment().format('YYYY-MM-DD')},
     createTime : {type:String, default : moment().format('YYYY-MM-DD HH:mm:ss') },//创建时间
     createTimeStamp : {type:String,default:moment().format('X')}//创建时间戳
