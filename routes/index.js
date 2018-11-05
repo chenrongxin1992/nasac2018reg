@@ -4,6 +4,7 @@ var router = express.Router();
 const Reg = require('../db/struct').reg
 const url = require('url')
 const querystring = require('querystring')
+const async = require('async')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -24,32 +25,33 @@ router.post('/reg',function(req,res){
 		company = req.body.company,
 		phone = req.body.phone,
 		fakephone = plusXing(phone,3,4),
-		regtype = req.body.regtype,
+		//regtype = req.body.regtype,
 		regmoney = req.body.regmoney,
 		ccfhy = req.body.ccfhy,
 		ccfxshy = req.body.ccfxshy,
 		xuehao = req.body.xuehao,
-		regtypename = ''
+		regtypename = '',
+		email = req.body.email
 
-	switch(regtype){
-		case '0':
-			regtypename = '院士/特邀报告人'
-			break
-		case '1':
-			regtypename = '专委委员'
-			break
-		case '2':
-			regtypename = 'CCF会员'
-			break
-		case '3':
-			regtypename = 'CCF学生会员'
-			break
-		case '4':
-			regtypename = '学生'
-			break
-		default:
-			regtypename = '其他'
-	}
+	// switch(regtype){
+	// 	case '0':
+	// 		regtypename = '院士/特邀报告人'
+	// 		break
+	// 	case '1':
+	// 		regtypename = '专委委员'
+	// 		break
+	// 	case '2':
+	// 		regtypename = 'CCF会员'
+	// 		break
+	// 	case '3':
+	// 		regtypename = 'CCF学生会员'
+	// 		break
+	// 	case '4':
+	// 		regtypename = '学生'
+	// 		break
+	// 	default:
+	// 		regtypename = '其他'
+	// }
 	let search = Reg.findOne({'phone':phone})
 		search.exec(function(err,doc){
 			if(err){
@@ -67,12 +69,13 @@ router.post('/reg',function(req,res){
 					company:company,
 					phone:phone,
 					fakephone:fakephone,
-					regtype:regtype,
-					regtypename:regtypename,
+					//regtype:regtype,
+					//regtypename:regtypename,
 					regmoney:regmoney,
 					ccfhy:ccfhy,
 					ccfxshy:ccfxshy,
-					xuehao:xuehao
+					xuehao:xuehao,
+					email:email
 				})
 				console.log(reg)
 				reg.save(function(err){
@@ -159,5 +162,82 @@ router.get('/getregdata',function(req,res){
     //     res.writeHead(200, {'Content-Type':'text/html;charset=utf-8'});
     //     res.end('Hell World\n');    
     // }    
+})
+
+router.get('/update',function(req,res){
+	return res.render('update')
+})
+router.get('/updateregdata',function(req,res){
+	let regdate = req.query.regdate
+	let search = Reg.find({})
+	
+	let page = req.query.page,
+		limit = req.query.limit
+
+	page ? page : 1;//当前页
+	limit ? limit : 10;//每页数据
+
+	if(!page){
+		page = 1
+	}
+	if(!limit){
+		limit = 10
+	}
+	async.waterfall([
+		function(cb){
+			let search = Reg.find({})
+			if(regdate){
+				console.log('regtime',regdate)
+				search.where('regtime').equals(regdate)
+			}
+			search.count()
+			search.exec(function(error,total){
+				if(error){
+					console.log('error',error)
+					return res.json({'code':-1,'msg':error,'count':'','data':{}})
+				}
+				cb(null,total)
+			})
+		},
+		function(total,cb){
+			let search = Reg.find({})
+			if(regdate){
+				console.log('regtime',regdate)
+				search.where('regtime').equals(regdate)
+			}
+			let numSkip = (page-1)*limit
+				limit = parseInt(limit)
+			console.log('check -- >',limit,page,numSkip)
+			search.limit(limit)
+			search.skip(numSkip)
+			search.exec(function(error,docs){
+				if(error){
+					console.log('error',error)
+					return res.json({'code':-1,'msg':error,'count':'','data':{}})
+				}
+				let result = {}
+				result.total = total
+				result.data = docs
+				cb(null,result)	
+			})
+		}
+	],function(error,result){
+		if(error){
+			console.log('async waterfall error',error)
+			return false
+		}
+		return res.json({'code':0,'msg':'','count':result.total,'data':result.data})
+	})
+})
+router.post('/confirm',function(req,res){
+	let _id = req.body._id
+	console.log('_id',_id)
+	Reg.update({'_id':_id},{'state':2},function(err){
+		if(err){
+			console.log('err',err)
+			return res.json({'code':-1,'msg':err})
+		}
+		return res.json({'code':0,'msg':'success'})
+	})
 })
 module.exports = router;

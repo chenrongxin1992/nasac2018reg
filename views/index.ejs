@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>NASAC2018会议注册</title>
+<title>院士论坛注册</title>
 <link rel="stylesheet" href="/nasac2018reg/stylesheets/layui.css" media="all">
 <link rel="stylesheet" href="/nasac2018reg/stylesheets/extend/steps/style.css">
 <style type="text/css">
@@ -12,10 +12,12 @@
 </style>
 </head>
 <body>
+<img class="img-responsive" src="/nasac2018reg/images/gonggao.png" alt="会议日程" style="position:absolute; bottom: 0; right:0;">
 <div class="layui-container"> 
+
 	<div class="layui-row">
 		<div class="layui-col-12">
-			<img class="img-responsive" src="/nasac2018reg/images/sz.jpg" alt="NASAC2018" style="width: 100%">
+			<img class="img-responsive" src="/nasac2018reg/images/sz.png" alt="NASAC2018" style="height:50%">
 		</div>
 	</div>
 	<div class="layui-row">
@@ -35,10 +37,11 @@
              
             </ul>
         </div>
+        <br>
         <div class="step-content">
             <div class="step-list">
               <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                <legend>NASAC2018会议注册</legend>
+                <legend>院士论坛注册</legend>
               </fieldset>
               <form class="layui-form layui-form-pane" action="">
                 <div class="layui-form-item">
@@ -61,7 +64,7 @@
                      <input type="text" name="email" lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <!-- <div class="layui-form-item">
                   <label class="layui-form-label">注册类型</label>
                   <div class="layui-input-inline">
                     <select name="regtype" lay-filter="regtype" lay-verify="required">
@@ -75,7 +78,7 @@
                     </select>
                   </div>
                   <div class="layui-form-mid layui-word-aux" id="zcf" value=''></div>
-                </div>
+                </div> -->
 
                 <div class="layui-form-item" style="display: none;" id="ccfhy">
                   <label class="layui-form-label">会员号</label>
@@ -116,6 +119,7 @@
               <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
                 <legend>开票信息</legend>
               </fieldset>
+
               <form class="layui-form layui-form-pane" action="" id="kpform">
                 <div class="layui-form-item" pane>
                   <label class="layui-form-label">是否开票</label>
@@ -136,27 +140,38 @@
             </div>
             <div class="step-list" >
               <div class="layui-row">
-                <div class="layui-col-md6">
+                <div class="layui-col-md4">
                   <fieldset class="layui-elem-field layui-field-title">
                     <legend>支付信息</legend>
                     <div class="layui-field-box" style="max-width: 570px;text-align: center;">
-                      <p style="font-size: 18px;">你的注册类型是：<span id="zflx" style="color:red;"></span>，需支付<span id="zfq" style="color:red;"></span>元</p>
-                      <img class="img-responsive" src="/nasac2018reg/images/pay.png" alt="支付二维码" style="">
+                      <p style="font-size: 18px;"><!-- 你的注册类型是：<span id="zflx" style="color:red;"></span> -->需支付<strong id="zfq" style="color:red;"> 500 </strong>元</p><br/>
+                      <img class="img-responsive" src="/nasac2018reg/images/pay.png" alt="支付二维码" style=""><br/><br/><br/>
+                      <p style="color: red;">提示：支付后，请添加以下微信号，并发送支付截图，等待会务组核对支付信息，核对之后将通知注册结果。</p><br/>
+
+                      <img class="img-responsive" src="/nasac2018reg/images/lianxi.png" alt="" style=""><br/><br/><br/>
+
                     </div>
                   </fieldset>
                 </div>
-                <div class="layui-col-md6">
+                <div class="layui-col-md4">
                   <fieldset class="layui-elem-field layui-field-title">
-                    <legend>支付流程</legend>
+                    <legend>支付宝支付流程</legend>
                     <div class="layui-field-box" style="text-align: center;">
-                      <img class="img-responsive" src="/nasac2018reg/images/ali01.png" style="width: 300px;" alt="" >
-                      <img class="img-responsive" src="/nasac2018reg/images/ali02.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/ali03.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/ali04.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/wx01.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/wx02.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/wx03.png" alt="" style="width: 300px;">
-                      <img class="img-responsive" src="/nasac2018reg/images/wx04.png" alt="" style="width: 300px;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali01.png" style="width: 280px;margin: 10px 0;" alt="" >
+                      <img class="img-responsive" src="/nasac2018reg/images/ali02.png" alt="" style="width: 280px;margin: 10px 0;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali03.png" alt="" style="width: 280px;margin: 10px 0;">
+                      <img class="img-responsive" src="/nasac2018reg/images/ali04.png" alt="" style="width: 280px;margin: 10px 0;">
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="layui-col-md4">
+                  <fieldset class="layui-elem-field layui-field-title">
+                    <legend>微信支付流程</legend>
+                    <div class="layui-field-box" style="text-align: center;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx01.png" alt="" style="width: 280px;margin: 10px 0;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx02.png" alt="" style="width: 280px;margin: 10px 0;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx03.png" alt="" style="width: 280px;margin: 10px 0;">
+                      <img class="img-responsive" src="/nasac2018reg/images/wx04.png" alt="" style="width: 280px;margin: 10px 0;">
                     </div>
                   </fieldset>
                 </div>
@@ -171,10 +186,11 @@
 	</div>
   <hr style="height:1px;border:none;border-top:1px dashed #5cb85c;">
   <footer style="text-align: center;">
-    <p class="text-center">2018 &copy; NASAC 会务组</p>
+    <p class="text-center">2018 &copy; 院士论坛 会务组</p>
   </footer>
 </div>
                 <div id="confirmkaipiao" style="display: none;">
+                  
                   <div class="layui-form-item" id="">
                     <div class="layui-inline">
                       <label class="layui-form-label">票据抬头</label>
@@ -199,6 +215,8 @@
                       </div>
                     </div>
                   </div> 
+
+                  <p style="color: red;">提示：若需开票，请认真核对开票信息，信息一经提交，不支持修改。</p><br>
                 </div>
 <script src="/nasac2018reg/javascripts/layui.js"></script>
 <script>
@@ -209,6 +227,7 @@ layui.use(['form','steps'], function(){
   var phone = '',//手机号
       regmoney = 0,
       regtypename = ''
+      kpje = 0
 
     $("#preBtn").click(function(event) {
       console.log(event)
@@ -233,18 +252,18 @@ layui.use(['form','steps'], function(){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">1200</span> 元').val(1200)
+  		$('#zcf').html('注册费 <span style="color:red;">1080</span> 元，该价格是10月15日前注册费').val(1080)
   	}
   	if(data.value == 2){
   		console.log('CCF会员')
   		$('#ccfxshy').css('display','none')
   		$('#ccfhy').css('display','')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">1275</span> 元').val(1275)
+  		$('#zcf').html('注册费 <span style="color:red;">1147.5</span> 元，该价格是10月15日前注册费').val(1147.5)
   	}
   	if(data.value == 3){
   		console.log('CCF学生会员')
-  		$('#zcf').html('注册费 <span style="color:red;">975</span> 元').val(975)
+  		$('#zcf').html('注册费 <span style="color:red;">877.5</span> 元，该价格是10月15日前注册费').val(877.5)
   		$('#ccfhy').css('display','none')
   		$('#xuehao').css('display','none')
   		$('#ccfxshy').css('display','')
@@ -254,13 +273,13 @@ layui.use(['form','steps'], function(){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','')
-  		$('#zcf').html('注册费 <span style="color:red;">1050</span> 元').val(1050)
+  		$('#zcf').html('注册费 <span style="color:red;">945</span> 元，该价格是10月15日前注册费').val(945)
   	}
   	if(data.value == 5){
   		$('#ccfhy').css('display','none')
   		$('#ccfxshy').css('display','none')
   		$('#xuehao').css('display','none')
-  		$('#zcf').html('注册费 <span style="color:red;">1500</span> 元').val(1500)
+  		$('#zcf').html('注册费 <span style="color:red;">1500</span> 元，该价格是10月15日前注册费').val(1500)
   	}
   })
   //监听下一步
@@ -281,6 +300,7 @@ layui.use(['form','steps'], function(){
   		layer.msg('请输入学号!', {icon: 6, time: 1000});
   		return false
   	}
+    console.log('data.field.regtype',data.field.regtype)
     switch(data.field.regtype){
       case '0':
         regtypename = '院士/特邀报告人'
@@ -301,7 +321,8 @@ layui.use(['form','steps'], function(){
         regtypename = '其他'
     }
     phone = data.field.phone
-    regmoney = $('#zcf').val()
+    regmoney = 500
+    kpje = regmoney
     regtype = data.field.regtype
     console.log('第一步phone',phone)
     $.ajax({
@@ -311,7 +332,7 @@ layui.use(['form','steps'], function(){
     		name:data.field.name,
     		company:data.field.company,
     		phone:data.field.phone,
-    		regtype:data.field.regtype,
+    		//regtype:data.field.regtype,
     		regmoney:$('#zcf').val(),
     		ccfhy:data.field.ccfhy,
     		ccfxshy:data.field.ccfxshy,
@@ -324,6 +345,8 @@ layui.use(['form','steps'], function(){
           //下一步
           console.log('$step111--->',$step)
           $step.nextStep();//下一步
+          $('#zflx').html(regtypename)
+            $('#zfq').html(regmoney)
           return false
         }
         if(result.code == -1){
@@ -366,11 +389,13 @@ layui.use(['form','steps'], function(){
     console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
     if(switchstate){
       console.log('需要开票','手机号',phone)
-      if(parseInt(data.field.kpje) > parseInt(regmoney)){
+      if(parseInt(data.field.kpje) > 500){
         console.log('开票金额不能大于缴费金额',data.field.kpje,regmoney)
-        layer.msg('开票金额不能大于缴费金额!', {icon: 6, time: 2000});
+        layer.msg('开票金额不能大于500元!', {icon: 6, time: 2000});
         return false
       }
+      kpje = regmoney
+      console.log('kpje',kpje)
       $.ajax({
         url:'/nasac2018reg/pjgx',
         method:'POST',
@@ -460,6 +485,7 @@ layui.use(['form','steps'], function(){
       $('#pjtt').attr('lay-verify','required')
       $('#swh').attr('lay-verify','required')
       $('#kpje').attr('lay-verify','required')
+      $('#kpje').val(kpje)
       $('#confirmkaipiao').appendTo($('#kpcontainer'))
       $('#confirmkaipiao').css({'display':''})
       return false
@@ -469,6 +495,7 @@ layui.use(['form','steps'], function(){
       $('#pjtt').attr('lay-verify','')
       $('#swh').attr('lay-verify','')
       $('#kpje').attr('lay-verify','')
+      //$('#kpje').val(0)
       $('#confirmkaipiao').css({'display':'none'})
       return false
 

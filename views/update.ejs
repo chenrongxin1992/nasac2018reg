@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>支付确认</title>
+<link rel="stylesheet" href="/nasac2018reg/stylesheets/layui.css" media="all">
+<link rel="stylesheet" href="/nasac2018reg/stylesheets/extend/steps/style.css">
+<style type="text/css">
+  .step-body{
+    margin-top: 25px;
+  }
+</style>
+</head>
+<body>
+<div class="layui-container"> 
+	<div class="layui-row">
+		<div class="layui-col-12">
+			<img class="img-responsive" src="/nasac2018reg/images/sz.jpg" alt="NASAC2018" style="width: 100%"><br/>
+		</div>
+	</div>
+  <br/><br/>
+  <div class="layui-row">
+    <div class="layui-col-12">
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            
+            <label class="layui-form-label" style="width:98px;">注册时间</label>
+            <div class="layui-input-inline">
+              <input type="text" class="layui-input" id="regdate">
+            </div>
+            
+            <!-- <button class="layui-btn" lay-submit="" lay-filter="search">搜索</button> -->
+
+          </div>
+        </div>  
+      </form>
+    </div>
+  </div>
+
+
+  <div class="layui-row">
+    <div class="layui-col-12">
+    <table id="regtable" lay-filter="regtable"></table>
+    </div>
+  </div>
+	
+  <hr style="height:1px;border:none;border-top:1px dashed #5cb85c;">
+  <footer style="text-align: center;">
+    <p class="text-center">2018 &copy; NASAC 会务组</p>
+  </footer>
+</div>
+                
+<script src="/nasac2018reg/javascripts/layui.js"></script>
+
+<script type="text/html" id="stateTpl">
+  {{#  if(d.state == 1 || d.state == 0){ }}
+    待确认
+  {{#  } else { }}
+    已支付
+  {{#  } }}
+</script>
+
+<script type="text/html" id="needpjTpl">
+  {{#  if(d.needpj == 0){ }}
+    否
+  {{#  } else { }}
+    是 票据抬头：{{d.pjtt}}，税务号：{{d.swh}}，开票金额：{{d.kpje}}
+  {{#  } }}
+</script>
+
+<script type="text/html" id="regbar">
+ {{#  if(d.state == 2){ }}
+  <a class="layui-btn layui-btn-xs layui-btn-disabled" lay-event="edit">编辑</a>
+ {{#  } else { }}
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+ {{#  } }}
+</script>
+
+<script>
+layui.use(['form','steps','laydate','table'], function(){
+  var form = layui.form;
+  	  $ = layui.jquery,
+      laydate = layui.laydate,
+      table = layui.table
+
+  laydate.render({
+    elem:'#regdate',
+    done: function(value, date, endDate){
+          console.log(value); //得到日期生成的值，如：2017-08-18
+          table.reload('regtable', {
+            where: { //设定异步数据接口的额外参数，任意设
+              regdate: value
+              
+            }
+            ,page: {
+              curr: 1 //重新从第 1 页开始
+            }
+          });
+          console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+          console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+        }
+  })
+
+  //第一个实例
+  table.render({
+    elem: '#regtable'
+    ,height: 500
+    ,url: '/nasac2018reg/updateregdata' //数据接口
+    ,page: true //开启分页
+    ,cols: [[ //表头
+      {field: 'name', title: '姓名', width:80}
+      ,{field: 'company', title: '单位/学校', width:180}
+      ,{field: 'phone', title: '电话', width:130} 
+      ,{field: 'email', title: '邮箱', width: 210}
+      ,{field: 'regmoney', title: '注册费', width: 100}
+      ,{field: 'regtime', title: '注册时间', width: 160}
+      ,{field: 'state', title: '注册状态', width: 120,templet: '#stateTpl'}
+      ,{field: 'needpj', title: '是否开票', width: 120,templet: '#needpjTpl'}
+      ,{fixed: 'right', title: '确认支付',width:100, align:'center', toolbar: '#regbar'} //这里的toolbar值是模板元素的选择器
+    ]]
+  });
+
+  //监听工具条
+  table.on('tool(regtable)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+    var data = obj.data; //获得当前行数据
+    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+    var tr = obj.tr; //获得当前行 tr 的DOM对象
+   
+   if(layEvent === 'edit'){ //编辑
+      //do something
+      console.log('data',data)
+      if(data.state==2)
+        return false
+      //同步更新缓存对应的值
+      layer.confirm('确认该人已支付？', function(index){
+        layer.close(index);
+        //向服务端发送删除指令
+        $.ajax({
+          method:'post',
+          url:'/nasac2018reg/confirm',
+          data:{
+            _id:data._id
+          },
+          success:function(res){
+            layer.msg('已确认')
+            obj.update({
+              state: '已支付'
+            });
+          },
+          error:function(err){
+            console.log('err',err)
+          }
+        })
+      }); 
+    }
+  });
+  
+});
+</script>
